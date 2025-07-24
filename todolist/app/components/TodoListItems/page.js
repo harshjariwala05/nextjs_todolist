@@ -102,7 +102,7 @@ export default function TodoListItems({ item, indexNum, todoList, setTodoList, h
             <div className="mt-4 flex items-center flex-wrap gap-3">
                 <span className="text-md font-semibold">Status:</span>
 
-                <span
+                <span  
                     ref={statusRef}
                     onClick={() => toggleStatusMenu(true)}
                     className="cursor-pointer text-white px-3 py-1 rounded-full text-sm shadow"
