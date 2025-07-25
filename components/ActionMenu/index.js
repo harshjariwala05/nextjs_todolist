@@ -7,7 +7,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/zoom.css";
 
-export default function ActionMenu({ onEdit, onDelete }) {
+export default function ActionMenu({ handleEdit, handleDelete }) {
   const [menuState, setMenuState] = useState({ state: "closed" });
   const actionRef = useRef(null);
 
@@ -35,14 +35,14 @@ export default function ActionMenu({ onEdit, onDelete }) {
         className="z-50 border border-gray-200 shadow-md rounded-lg p-1 bg-white"
       >
         <MenuItem
-          onClick={onEdit}
+          onClick={handleEdit}
           className="text-green-600 flex items-center hover:bg-green-50 px-3 py-2 text-sm"
         >
           <AiFillEdit className="mr-2" />
           Edit
         </MenuItem>
         <MenuItem
-          onClick={onDelete}
+          onClick={handleDelete}
           className="text-red-600 flex items-center hover:bg-red-50 px-3 py-2 text-sm"
         >
           <RiDeleteBinLine className="mr-2" />

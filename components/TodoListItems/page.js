@@ -21,8 +21,8 @@ export default function TodoListItems({ item, indexNum, todoList, setTodoList, h
                 </h3>
 
                 <ActionMenu
-                    onEdit={() => handleEdit(indexNum)}
-                    onDelete={delRow}
+                    handleEdit={() => handleEdit(indexNum)}
+                    handleDelete={delRow}
                 />
             </div>
 

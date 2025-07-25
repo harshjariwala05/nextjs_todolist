@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import TodoListItems from "../app/components/TodoListItems/page";
-import TodoForm from "./components/TodoForm";
+import TodoListItems from "../components/TodoListItems/page";
+import TodoForm from "../components/TodoForm/index";
 
 export default function Home({ }) {
   const [todoList, setTodoList] = useState([]);
