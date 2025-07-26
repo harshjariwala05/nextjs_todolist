@@ -1,3 +1,4 @@
+"use client";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -6,54 +7,53 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 
 export default function TodoForm({ todoList, setTodoList, editingIndex, setEditingIndex }) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState(null);
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [dueDate, setDueDate] = useState(null);
+  const saveTodoList = (event) => {
+    event.preventDefault();
 
-    const saveTodoList = (event) => {
-        event.preventDefault();
+    if (!title || !description || !dueDate) {
+      alert("All fields are required");
+      return;
+    }
 
-        if (!title || !description || !dueDate) {
-            alert("All fields are required");
-            return;
-        }
-
-        const newItem = {
-            title,
-            description,
-            status: "IN PROGRESS",
-            dueDate: dueDate ? dueDate.toISOString() : null,
-        };
-
-        if (editingIndex !== null) {
-            const updatedList = [...todoList];
-            updatedList[editingIndex] = { ...updatedList[editingIndex], ...newItem };
-            setTodoList(updatedList);
-            setEditingIndex(null);
-        } else {
-            const exists = todoList.some((item) => item.title === title);
-            if (!exists) {
-                setTodoList([...todoList, newItem]);
-            } else {
-                alert("Todo with this title already exists");
-            }
-        }
-
-        setTitle("");
-        setDescription("");
-        setDueDate(null);
-        event.target.reset();
+    const newItem = {
+      title,
+      description,
+      status: "IN PROGRESS",
+      dueDate: dueDate.toISOString(),
     };
 
-    useEffect(() => {
-        if (editingIndex !== null) {
-            const item = todoList[editingIndex];
-            setTitle(item.title);
-            setDescription(item.description);
-            setDueDate(dayjs(item.dueDate));
-        }
-    }, [editingIndex, todoList]);
+    if (editingIndex !== null) {
+      const updatedList = [...todoList];
+      updatedList[editingIndex] = { ...updatedList[editingIndex], ...newItem };
+      setTodoList(updatedList);
+      setEditingIndex(null);
+    } else {
+      const exists = todoList.some((item) => item.title === title);
+      if (exists) {
+        alert("Todo with this title already exists");
+        return;
+      }
+      setTodoList([...todoList, newItem]);
+    }
+
+    setTitle("");
+    setDescription("");
+    setDueDate(null);
+    event.target.reset();
+  };
+
+  useEffect(() => {
+    if (editingIndex !== null) {
+      const item = todoList[editingIndex];
+      setTitle(item.title);
+      setDescription(item.description);
+      setDueDate(dayjs(item.dueDate));
+    }
+  }, [editingIndex, todoList]);
 
     return (
         <form className="space-y-4" onSubmit={saveTodoList}>
