@@ -5,14 +5,10 @@ import "@szhsin/react-menu/dist/transitions/zoom.css";
 import ActionMenu from "../ActionMenu";
 import StatusMenu from "../StatusMenu";
 
-export default function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
+export default function TodoList({ item, handleEdit, handleDelete }) {
 
     const [status, setStatus] = useState(item.status || "IN PROGRESS");
-    const delRow = () => {
-        const finalData = todoList.filter((_, index) => index !== indexNum);
-        setTodoList(finalData);
-    };
-
+    
     return (
         <li className="bg-white rounded-xl shadow-md p-6 mb-6 max-w-lg min-h-55 mx-auto">
             <div className="flex justify-between items-center mb-5 flex-wrap gap-y-2">
@@ -22,7 +18,7 @@ export default function TodoListItems({ item, indexNum, todoList, setTodoList, h
 
                 <ActionMenu
                     handleEdit={() => handleEdit(indexNum)}
-                    handleDelete={delRow}
+                    handleDelete={() => handleDelete(indexNum)}
                 />
             </div>
 
