@@ -11,10 +11,10 @@ export default function Home() {
     setEditingIndex(index);
   };
 
-  const handleDelete = (indexNum) => {
-    const finalData = todoList.filter((_, index) => index !== indexNum);
-    setTodoList(finalData);
-  };
+  const handleDelete = (index) => {
+    const findData = todoList.filter((_, i) => i !== index);
+    setTodoList(findData);
+  };  
 
   return (
     <main className="min-h-screen py-10 px-4 bg-gray-100">
