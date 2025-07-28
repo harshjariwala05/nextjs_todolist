@@ -24,14 +24,23 @@ export default function TodoItem({ item, indexNum, todoList, setTodoList, handle
                     handleDelete={handleDelete}
                 />
             </div>
-            <p className={`text-md mb-2 font-medium ${status === "CLOSED" ? "line-through text-gray-400" : "text-gray-700"}`}>
+            <p className={`text-md mb-3 font-medium ${status === "CLOSED" ? "line-through text-gray-400" : "text-gray-700"}`}>
                 {item.description}
             </p>
             {item.dueDate && (
-                <p className={`text-sm mb-2 ${status === "CLOSED" ? "text-gray-400 line-through" : "text-gray-700"}`}>
+                <p className={`text-sm mb-3 ${status === "CLOSED" ? "text-gray-400 line-through" : "text-gray-700"}`}>
                     <span className="font-semibold">Due Date:</span> {new Date(item.dueDate).toLocaleDateString("en-GB")}
-                </p>
+                </p>                                                            
             )}
+
+            {item.assignee && (
+                <div className={`flex items-center gap-2 mb-3 ${status === "CLOSED" ? "text-gray-400 line-through" : "text-gray-700"}`}>
+                    <span className="text-sm font-semibold">Assigned to:</span>
+                    <img src={item.assignee.photo} className="w-7 h-7  rounded-full object-cover" alt={item.assignee.name} />
+                    <span className="text-sm">{item.assignee.name}</span>
+                </div>
+            )}
+
             <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold">Status:</span>
                 <StatusMenu
