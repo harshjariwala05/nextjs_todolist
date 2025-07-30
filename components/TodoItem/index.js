@@ -30,7 +30,7 @@ export default function TodoItem({ item, indexNum, todoList, setTodoList, handle
             {item.dueDate && (
                 <p className={`text-sm mb-3 ${status === "CLOSED" ? "text-gray-400 line-through" : "text-gray-700"}`}>
                     <span className="font-semibold">Due Date:</span> {new Date(item.dueDate).toLocaleDateString("en-GB")}
-                </p>                                                            
+                </p>
             )}
 
             {item.assignee && (
@@ -38,6 +38,20 @@ export default function TodoItem({ item, indexNum, todoList, setTodoList, handle
                     <span className="text-sm font-semibold">Assigned to:</span>
                     <img src={item.assignee.photo} className="w-7 h-7  rounded-full object-cover" alt={item.assignee.name} />
                     <span className="text-sm">{item.assignee.name}</span>
+                </div>
+            )}
+
+            {item.labels?.length > 0 && (
+                <div className={`flex flex-wrap gap-2 mb-3 ${status === "CLOSED" ? "text-gray-400 line-through" : "text-gray-700"}`}>
+                    <span className="text-sm font-semibold">Label :</span>
+                    {item.labels.map((label, idx) => (
+                        <span
+                            key={idx}
+                            className="text-[#442773] bg-[#c5c9ed]  text-sm px-2 py-1 rounded-full"
+                        >
+                            {label}
+                        </span>
+                    ))}
                 </div>
             )}
 
@@ -51,3 +65,4 @@ export default function TodoItem({ item, indexNum, todoList, setTodoList, handle
         </li>
     );
 }
+ 

@@ -7,17 +7,19 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import Assignee from "../Assignee";
 import { UsersData } from "../UsersData";
+import Label from "../Label";
 
 export default function TodoForm({ todoList, setTodoList, editingIndex, setEditingIndex }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState(null);
   const [assignee, setAssignee] = useState("");
+  const [labels, setLabels] = useState([]);
 
   const saveTodoList = (event) => {
     event.preventDefault();
 
-    if (!title || !description || !dueDate || !assignee) {
+    if (!title || !description || !dueDate || !assignee || labels.length === 0) {
       alert("All fields are required");
       return;
     }
@@ -29,7 +31,8 @@ export default function TodoForm({ todoList, setTodoList, editingIndex, setEditi
       description,
       status: "IN PROGRESS",
       dueDate: dueDate.toISOString(),
-      assignee: selectedAssignee
+      assignee: selectedAssignee,
+      labels: labels,
     };
 
     if (editingIndex !== null) {
@@ -49,6 +52,7 @@ export default function TodoForm({ todoList, setTodoList, editingIndex, setEditi
     setTitle("");
     setDescription("");
     setAssignee("");
+    setLabels([]);
     setDueDate(null);
     event.target.reset();
   };
@@ -59,6 +63,7 @@ export default function TodoForm({ todoList, setTodoList, editingIndex, setEditi
       setTitle(item.title);
       setDescription(item.description);
       setAssignee(item.assignee.name);
+      setLabels(item.labels || []);
       setDueDate(dayjs(item.dueDate));
     }
   }, [editingIndex, todoList]);
@@ -71,7 +76,7 @@ export default function TodoForm({ todoList, setTodoList, editingIndex, setEditi
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
-        className="w-full mt-4 px-4 py-2  rounded border-[1px] border-[#8E939B] text-gray-900 placeholder-gray-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className="w-full mt-4 px-4 py-2 rounded border-[1px] border-[#8E939B] text-gray-900 placeholder-gray-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       />
 
       <input
@@ -80,10 +85,12 @@ export default function TodoForm({ todoList, setTodoList, editingIndex, setEditi
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
-        className="w-full mt-2 px-4 py-2  rounded border-[1px] border-[#8E939B] text-gray-900 placeholder-gray-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className="w-full mt-2 px-4 py-2 rounded border-[1px] border-[#8E939B] text-gray-900 placeholder-gray-500  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       />
 
       <Assignee value={assignee} onChange={setAssignee} assignees={UsersData} />
+
+      <Label labels={labels} setLabels={setLabels} />
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DatePicker"]}>
@@ -103,12 +110,10 @@ export default function TodoForm({ todoList, setTodoList, editingIndex, setEditi
       </LocalizationProvider>
 
       <div className="flex justify-center">
-        <button
-          type="submit"
-          className={`w-30 mt-5 py-2 rounded-lg text-white font-semibold ${editingIndex !== null
-            ? "bg-green-600 hover:bg-green-700"
-            : "bg-blue-600 hover:bg-blue-700"
-            }`}
+        <button type="submit" className={`w-30 mt-5 py-2 rounded-lg cursor-pointer text-white font-semibold ${editingIndex !== null
+          ? "bg-green-600 hover:bg-green-700"
+          : "bg-blue-600 hover:bg-blue-700"
+          }`}
         >
           {editingIndex !== null ? "Update" : "Save"}
         </button>
