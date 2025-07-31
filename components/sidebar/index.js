@@ -3,7 +3,7 @@ import SidebarItems from './SidebarItems';
 export default function Sidebar({ isOpen, toggleSidebar, open }) {
   return (
     <>
-      {/* Mobile Overlay */}
+
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
@@ -16,7 +16,7 @@ export default function Sidebar({ isOpen, toggleSidebar, open }) {
           ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0
           ${open ? 'w-[96px]' : 'w-[340px]'} md:block flex flex-col`}
       >
-        {/* 🔰 Logo */}
+   
         <div className="flex items-left mb-12 justify-left ">
           <img
             src="https://ui8-core.herokuapp.com/img/logo-dark.png"
@@ -25,7 +25,7 @@ export default function Sidebar({ isOpen, toggleSidebar, open }) {
           />
         </div>
 
-        {/* 📦 Sidebar Items */}
+  
         <div className="flex-1 overflow-y-auto justify-center items-center text-center">
           <SidebarItems open={!open} />
         </div>

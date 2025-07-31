@@ -34,13 +34,11 @@ export default function Dashboard() {
                 <h1 className="text-3xl font-bold">Dashboard</h1>
             </div>
             <div className="grid md:grid-cols-12 gap-6">
-                {/* Left Side - 8 columns */}
                 <div className="md:col-span-8 space-y-6">
                     <CustomerList customers={customers} />
                     <Chart />
                 </div>
 
-                {/* Right Side - 4 columns */}
                 <div className="md:col-span-4">
                     <PopularProducts products={products} />
                 </div>

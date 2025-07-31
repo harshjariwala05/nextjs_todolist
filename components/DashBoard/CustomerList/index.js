@@ -27,7 +27,6 @@ export default function CustomerList({ customers }) {
                     </div>
                 ))}
 
-                {/* View All Box */}
                 <div className="flex flex-col items-center justify-center text-center cursor-pointer text-gray-500 hover:text-blue-600 transition-colors">
                     <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 mb-2 text-lg">
                         →

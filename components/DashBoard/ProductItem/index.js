@@ -10,13 +10,6 @@ export default function ProductItem({ product }) {
       </div>
       <div className="text-right">
         <p className="font-semibold">${product.earning}</p>
-        {/* <span
-          className={`text-xs px-2 py-1 rounded ${
-            product.active ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-500'
-          }`}
-        >
-          {product.active ? 'Active' : 'Inactive'}
-        </span> */}
       </div>
     </div>
   );
