@@ -6,29 +6,29 @@ import { useState } from 'react';
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
 
   const handleSidebarToggle = () => {
     if (window.innerWidth < 768) {
       setIsMobile(!isMobile);
     } else {
-      setOpen(!open);
+      setOpen(!isOpen);
     }
   };
 
   return (
     <div className="flex">
       <Sidebar
-        isOpen={isMobile}
+        isMobile={isMobile}
         toggleSidebar={handleSidebarToggle}
-        open={open}
+        isOpen={isOpen}
       />
 
       <div
-        className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${open ? 'md:ml-[96px]' : 'md:ml-[340px]'
+        className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${isOpen ? 'md:ml-[96px]' : 'md:ml-[340px]'
           }`}
       >
-        <Header toggleSidebarCollapse={handleSidebarToggle} open={open} />
+        <Header toggleSidebarCollapse={handleSidebarToggle} isOpen={isOpen} />
         <main className="pt-16 p-4 ">
           <Dashboard />
         </main>

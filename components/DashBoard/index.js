@@ -26,10 +26,25 @@ export default function Dashboard() {
             image: 'https://ui8-core.herokuapp.com/img/content/product-pic-3@2x.jpg',
             earning: '648.60',
         },
+        {
+            name: 'Crypter - NFT UI kit',
+            image: 'https://ui8-core.herokuapp.com/img/content/product-pic-1@2x.jpg',
+            earning: '2453.80',
+        },
+        {
+            name: 'Bento Matte 3D illustration 1.0',
+            image: 'https://ui8-core.herokuapp.com/img/content/product-pic-2@2x.jpg',
+            earning: '105.60',
+        },
+        {
+            name: 'Excellent material 3D chair',
+            image: 'https://ui8-core.herokuapp.com/img/content/product-pic-3@2x.jpg',
+            earning: '648.60',
+        },
     ];
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
+        <div className="min-h-screen bg-[#F4F4F4] p-6">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold">Dashboard</h1>
             </div>
