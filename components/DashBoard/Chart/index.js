@@ -3,7 +3,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 
 export default function BasicBars() {
     return (
-        <div className=" h-100 bg-[#FFFFFF] rounded-xl p-6 shadow">
+        <div className=" h-100 bg-[#FFFFFF] rounded-xl p-6 shadow mb-2">
 
             <div className="flex flex-wrap justify-between items-center mb-7 gap-x-4 gap-y-3">
                 <div className="flex items-center">
@@ -23,11 +23,9 @@ export default function BasicBars() {
             <div className="flex items-start mb-4 w-full h-80 relative ml-[-30px]">
                 <BarChart
                     xAxis={[{ data: ['22', '23', '24', '25', '26', '27', '28', '29'] }]}
-                    series={[{ data: [4, 3, 5, 6, 1, 5, 7, 6] }]}
-                    responsive
+                    series={[{ data: [4, 3, 5, 6, 1, 5, 7, 6] }]}                
                 />
             </div>
-            y
         </div>
     );
 }

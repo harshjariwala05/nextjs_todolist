@@ -2,7 +2,7 @@ import StatCard from "../StatCard";
 
 export default function CustomerList({ customers }) {
     return (
-        <div className=" h-[550px] bg-[#FFFFFF] rounded-xl p-6 shadow">
+        <div className=" h-[550px] bg-[#FFFFFF] rounded-xl p-6 mb-2 shadow">
             <div className="flex flex-wrap justify-between items-center mb-7 gap-x-4 gap-y-3">
                 <div className="flex items-center">
                     <div className="w-4 h-8 rounded bg-orange-300 mr-3"></div>
@@ -17,7 +17,6 @@ export default function CustomerList({ customers }) {
                     </select>
                 </div>
             </div>
-
 
             <div className="flex gap-4 mb-8">
                 <StatCard />
@@ -59,8 +58,6 @@ export default function CustomerList({ customers }) {
                     <span className="text-[13px] font-medium leading-[1.23]">View all</span>
                 </div>
             </div>
-
-
         </div>
     );
 }

@@ -29,7 +29,7 @@ export default function Home() {
           }`}
       >
         <Header toggleSidebarCollapse={handleSidebarToggle} isOpen={isOpen} />
-        <main className="pt-16 p-4 ">
+        <main className="p-10  ">
           <Dashboard />
         </main>
       </div>

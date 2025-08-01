@@ -2,7 +2,7 @@ import ProductItem from "../ProductItem";
 
 export default function PopularProducts({ products }) {
   return (
-    <div className="bg-white rounded-xl p-4 shadow">
+    <div className="bg-white rounded-xl p-4 shadow mb-2">
       <div className="flex flex-wrap justify-between items-center mb-7 gap-x-4 gap-y-3">
 
         <div className="flex items-center">
