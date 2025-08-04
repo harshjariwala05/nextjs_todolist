@@ -20,10 +20,10 @@ export default function BasicBars() {
                 </div>
             </div>
 
-            <div className="flex items-start mb-4 w-full h-80 relative ml-[-30px] overflow-hidden">
+            <div className="flex items-start mb-4 w-full h-67 relative ml-[-30px] overflow-y-hidden">
                 <BarChart
                     xAxis={[{ data: ['22', '23', '24', '25', '26', '27', '28', '29'] }]}
-                    series={[{ data: [4, 3, 5, 6, 1, 5, 7, 6] }]}
+                    series={[{ data: [4, 3, 5, 6, 2, 5, 7, 6] }]}
                 />
             </div>
         </div>

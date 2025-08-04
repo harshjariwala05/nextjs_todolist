@@ -1,10 +1,11 @@
-// components/SidebarMenu.jsx
-import { FaHome, FaBox, FaUsers, FaChartBar } from 'react-icons/fa';
 import { FaHouse } from "react-icons/fa6";
 import { RiVipDiamondLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
+import { useState } from "react";
 
 export default function SidebarItems({ isOpen }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const menuItems = [
     { icon: <FaHouse />, label: 'Home' },
     { icon: <RiVipDiamondLine />, label: 'Products' },
@@ -12,17 +13,24 @@ export default function SidebarItems({ isOpen }) {
   ];
 
   return (
-    <div className="space-y-5">
-      {menuItems.map((item, index) => (
-        <a
-          key={index}
-          href="#"
-          className="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition"
-        >
-          <span className="text-2xl">{item.icon}</span>
-          {isOpen && <span className='text-md font-semibold'>{item.label}</span>}
-        </a>
-      ))}
+    <div className="space-y-2">
+      {menuItems.map((item, index) => {
+        const isActive = index === activeIndex;
+
+        return (
+          <a
+            key={index}
+            href="#"
+            onClick={() => setActiveIndex(index)}
+            className={`flex w-full h-12 px-3 rounded-xl items-center gap-3 text-[15px] font-semibold 
+              transition whitespace-nowrap
+              ${isActive ? 'bg-[#EFEFEF] ' : ' hover:bg-[#f5f5f5]'}`}
+          >
+            <span className="text-2xl">{item.icon}</span>
+            {isOpen && <span>{item.label}</span>}
+          </a>
+        );
+      })}
     </div>
   );
 }
