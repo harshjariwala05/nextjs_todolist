@@ -2,7 +2,7 @@ import { IoBagOutline } from "react-icons/io5";
 
 export default function RefundRequest() {
     return (
-        <div className="bg-[#FCFCFC] rounded-md p-6 shadow relative">
+        <div className="bg-[#FCFCFC] rounded-md p-6 shadow w-full max-w-full overflow-x-auto relative">
             <div className="flex items-center mb-8 min-h-10 ">
                 <div className="flex items-center mr-auto relative ">
                     <div className="w-4 h-8 rounded bg-[#FFBC99] mr-3"></div>

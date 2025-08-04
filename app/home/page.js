@@ -29,7 +29,7 @@ export default function Home() {
           }`}
       >
         <Header toggleSidebarCollapse={handleSidebarToggle} isOpen={isOpen} />
-        <main className="p-10  ">
+        <main className="py-10">
           <Dashboard />
         </main>
       </div>

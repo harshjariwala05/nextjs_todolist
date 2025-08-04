@@ -16,7 +16,7 @@ export default function Ads() {
         },
     ];
     return (
-        <div className="relative bg-[#FCFCFC] rounded-lg p-6 ">
+        <div className="relative bg-[#FCFCFC] rounded-lg p-6 w-full max-w-full overflow-x-auto shadow mb-2">
             <div className="flex items-center mb-8 min-h-[40px]">
                 <div className="flex items-center mr-auto">
                     <div className="w-4 h-8 rounded bg-[#B1E5FC] mr-3"></div>

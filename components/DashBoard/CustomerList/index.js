@@ -2,13 +2,14 @@ import StatCard from "../StatCard";
 
 export default function CustomerList({ customers }) {
     return (
-        <div className=" h-[550px] bg-[#FFFFFF] rounded-xl p-6 mb-2 shadow">
-            <div className="flex flex-wrap justify-between items-center mb-7 gap-x-4 gap-y-3">
-                <div className="flex items-center">
-                    <div className="w-4 h-8 rounded bg-orange-300 mr-3"></div>
-                    <h1 className="text-2xl font-semibold text-[#1A1D1F]">Overview</h1>
-                </div>
+        <div className="bg-[#FCFCFC] rounded-lg p-6 mb-2 w-full max-w-full overflow-x-auto shadow">
+            <div className="flex items-center mb-8 gap-x-4 gap-y-3 min-h-10">
 
+                {/* <div className="relative pl-8 leading-[1.6] w-4 h-8 rounded bg-orange-300 mr-auto text-[20px] font-[600]">Overview</div> */}
+                <div className="relative flex items-center mr-auto">
+                    <div className="bg-[#FFBC99] absolute w-4 h-8 rounded-sm"></div>
+                    <div className="mr-auto relative pl-8 text-xl font-semibold leading-[1.6] ">Overview</div>
+                </div>
                 <div>
                     <select className="border border-gray-200 rounded-md px-4 py-2 text-sm font-medium text-[#1A1D1F] focus:outline-1 focus:ring-1 focus:ring-black">
                         <option>All time</option>

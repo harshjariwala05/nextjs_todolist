@@ -4,7 +4,7 @@ import { BsGraphUp } from "react-icons/bs";
 export default function StatCard() {
     return (
         <div className="w-full px-2 sm:px-4 md:px-6">
-            <div className="flex flex-wrap justify-between gap-3 sm:gap-4 md:gap-6">
+            <div className="flex flex-wrap justify-between sm:gap-2 md:gap-4">
 
                 <div className="w-[calc(50%-6px)] sm:w-[calc(50%-8px)] md:w-[calc(50%-12px)] min-w-[160px] flex items-center justify-between p-3 sm:p-4 md:p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition">
                     <div className="flex items-center gap-3 sm:gap-4">

@@ -34,26 +34,28 @@ export default function Dashboard() {
             image: 'https://ui8-core.herokuapp.com/img/content/product-pic-1@2x.jpg',
             earning: '2453.80',
         },
-      
+
     ];
 
     return (
-        <div className="min-h-screen bg-[#F4F4F4] py-8 ">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold">Dashboard</h1>
-            </div>
-            <div className="grid md:grid-cols-12 gap-2">
-                <div className="md:col-span-8 space-y-6">
-                    <CustomerList customers={customers} />
-                    <Chart />
-                    <ProTips />
-                    <Ads />
-                </div>
+        <div className="min-h-screen bg-[#F4F4F4] py-10 px-6 overflow-x-hidden">
+            <div className='flex flex-col flex-1 w-full max-w-full my-0 mx-0 mb-6'>
 
-                <div className="md:col-span-4">
-                    <PopularProducts products={products} />
-                    <Comments />
-                    <RefundRequest />
+                <div className="mb-6 text-[40px] leading-[1.2] font-semibold md:mb-4 ">Dashboard</div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-2 ">
+                    <div className="col-span-12 md:col-span-8 space-y-6">
+                        <CustomerList customers={customers} />
+                        <Chart />
+                        <ProTips />
+                        <Ads />
+                    </div>
+
+                    <div className="col-span-12 md:col-span-4 space-y-6">
+                        <PopularProducts products={products} />
+                        <Comments />
+                        <RefundRequest />
+                    </div>
                 </div>
             </div>
         </div>

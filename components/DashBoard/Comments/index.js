@@ -36,7 +36,7 @@ export default function Comments() {
     ];
 
     return (
-        <div className="relative p-6 bg-[#FCFCFC] rounded-md shadow-sm w-full mb-2">
+        <div className="relative p-6 bg-[#FCFCFC] rounded-md shadow-sm w-full max-w-full overflow-x-auto mb-2">
             <div className="flex items-center mb-8">
                 <div className="flex items-center mr-auto">
                     <div className="w-4 h-8 rounded bg-[#FFD88D] mr-3"></div>
