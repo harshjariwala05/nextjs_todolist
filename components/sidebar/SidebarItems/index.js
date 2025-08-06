@@ -1,34 +1,87 @@
+import { useState } from "react";
 import { FaHouse } from "react-icons/fa6";
 import { RiVipDiamondLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
-import { useState } from "react";
+import { AiTwotoneShop } from "react-icons/ai";
+import SidebarMenuItem from "./SidebarMenuItem";
+import SidebarSubMenuItem from "./SidebarSubMenuItem";
 
 export default function SidebarItems({ isOpen }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openSubmenu, setOpenSubmenu] = useState({});
+  const [activeSubIndex, setActiveSubIndex] = useState({});
+
+  const toggleSubmenu = (index) => {
+    setOpenSubmenu((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
 
   const menuItems = [
-    { icon: <FaHouse />, label: 'Home' },
-    { icon: <RiVipDiamondLine />, label: 'Products' },
-    { icon: <CgProfile />, label: 'Customers' }
+    { icon: <FaHouse />, label: "Home" },
+    {
+      icon: <RiVipDiamondLine />,
+      label: "Products",
+      submenu: [
+        { label: "Dashboard" },
+        { label: "Drafts", badge: 2, badgeColor: "bg-orange-300" },
+        { label: "Released" },
+        { label: "Comments" },
+        { label: "Scheduled", badge: 8, badgeColor: "bg-green-300" },
+      ],
+    },
+    {
+      icon: <CgProfile />,
+      label: "Customers",
+      submenu: [{ label: "Overview" }, { label: "Customer list" }],
+    },
+    { icon: <AiTwotoneShop />, label: "Shop" },
+    {
+      icon: <CgProfile />,
+      label: "Income",
+      submenu: [{ label: "Overview" }, { label: "Customer list" }],
+    },
+    { icon: <AiTwotoneShop />, label: "Promote" },
   ];
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 w-full /*flex justify-center items-center flex-col*/ ">
       {menuItems.map((item, index) => {
-        const isActive = index === activeIndex;
+        const isSubmenuOpen = openSubmenu[index] || false;
+        const isMainItemActive = index === activeIndex && activeSubIndex[index] === undefined;
 
         return (
-          <a
-            key={index}
-            href="#"
-            onClick={() => setActiveIndex(index)}
-            className={`flex w-full h-12 px-3 rounded-xl items-center gap-3 text-[15px] font-semibold 
-              transition whitespace-nowrap
-              ${isActive ? 'bg-[#EFEFEF] ' : ' hover:bg-[#f5f5f5]'}`}
-          >
-            <span className="text-2xl">{item.icon}</span>
-            {isOpen && <span>{item.label}</span>}
-          </a>
+          <div key={index}>
+            <SidebarMenuItem
+              item={item}
+              index={index}
+              isOpen={isOpen}
+              isActive={isMainItemActive}
+              isSubmenuOpen={isSubmenuOpen}
+              onClick={() => {
+                setActiveIndex(index);
+                setActiveSubIndex({});
+                if (item.submenu) toggleSubmenu(index);
+              }}
+            />
+
+            {item.submenu && isOpen && isSubmenuOpen && (
+              <div className="pl-6 ml-2 border-l border-gray-300 space-y-1 mt-1">
+                {item.submenu.map((sub, subIndex) => {
+                  const isSubActive = activeSubIndex[index] === subIndex;
+                  return (
+                    <SidebarSubMenuItem
+                      key={subIndex}
+                      sub={sub}
+                      isActive={isSubActive}
+                      onClick={() => {
+                        setActiveIndex(index);
+                        setActiveSubIndex({ ...activeSubIndex, [index]: subIndex });
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </div>
         );
       })}
     </div>

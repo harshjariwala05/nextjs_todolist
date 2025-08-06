@@ -5,6 +5,9 @@ import ProTips from './ProTips';
 import Comments from './Comments';
 import Ads from './Ads';
 import RefundRequest from './RefundRequest';
+import LineChart from './BasicLineChart';
+import StatsToggleCards from './StatCard';
+import StatCards from './StatCard';
 
 export default function Dashboard() {
     const customers = [
@@ -38,14 +41,13 @@ export default function Dashboard() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#F4F4F4] py-10 px-6 overflow-x-hidden">
+        <div className="min-h-screen bg-[#F4F4F4] overflow-x-hidden px-4 py-6 md:px-6 md:py-8">
             <div className='flex flex-col flex-1 w-full max-w-full my-0 mx-0 mb-6'>
-
                 <div className="mb-6 text-[40px] leading-[1.2] font-semibold md:mb-4 ">Dashboard</div>
-
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-2 ">
                     <div className="col-span-12 md:col-span-8 space-y-6">
-                        <CustomerList customers={customers} />
+                        {/* <CustomerList customers={customers} /> */}
+                        <StatCards customers={customers} />
                         <Chart />
                         <ProTips />
                         <Ads />

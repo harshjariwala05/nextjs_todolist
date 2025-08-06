@@ -2,17 +2,29 @@
 import Dashboard from '../../components/DashBoard';
 import Header from '../../components/Header';
 import Sidebar from '../../components/sidebar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(true); // original name
 
-  const handleSidebarToggle = () => {
-    if (window.innerWidth < 768) {
-      setIsMobile(!isMobile);
-    } else {
-      setOpen(!isOpen);
+  // 👉 Detect screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768); // mobile under 768px
+      setOpen(width >= 768 ? width >= 1260 : false); // open if >= 1260, else collapsed/closed
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 👉 Toggle for mobile only
+  const toggleSidebar = () => {
+    if (isMobile) {
+      setOpen(prev => !prev);
     }
   };
 
@@ -20,16 +32,17 @@ export default function Home() {
     <div className="flex">
       <Sidebar
         isMobile={isMobile}
-        toggleSidebar={handleSidebarToggle}
         isOpen={isOpen}
+        toggleSidebar={toggleSidebar}
       />
 
       <div
-        className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${isOpen ? 'md:ml-[96px]' : 'md:ml-[340px]'
-          }`}
+        className={`flex flex-col min-h-screen transition-all duration-300 ${
+          !isMobile && isOpen ? 'ml-[340px]' : !isMobile ? 'ml-[96px]' : ''
+        }`}
       >
-        <Header toggleSidebarCollapse={handleSidebarToggle} isOpen={isOpen} />
-        <main className="py-10">
+        <Header toggleSidebarCollapse={toggleSidebar} isOpen={isOpen} />
+        <main className="">
           <Dashboard />
         </main>
       </div>
