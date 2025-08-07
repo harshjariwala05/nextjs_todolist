@@ -28,7 +28,7 @@ export default function StatCards({ customers }) {
          <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 mb-8 p-2 bg-[#F4F4F4] rounded-[20px]">
             <div
                onClick={() => setActiveCard("customer")}
-               className={`cursor-pointer w-full sm:w-1/2 flex items-center justify-between rounded-xl text-[#1A1D1F] py-5 px-4 transition duration-300 ease-in-out select-none
+               className={` relative cursor-pointer w-full sm:w-1/2 flex items-center justify-between rounded-xl text-[#1A1D1F] py-5 px-4 transition duration-300 ease-in-out select-none
                ${activeCard === "customer" ? "bg-[#FCFCFC]" : "bg-[#F4F4F4]"}
             `}
             >
@@ -44,7 +44,7 @@ export default function StatCards({ customers }) {
                   <div className="text-5xl font-semibold leading-[1]">1024</div>
                </div>
 
-               <div className="flex items-center text-xs font-bold bg-[#FFE7E4] h-6 px-1 rounded-lg text-[#FF6A55] ml-2">
+               <div className="absolute top-3 right-3 left-auto h-6 px-2 py-0 rounded-lg flex items-center text-xs font-bold bg-[#FFE7E4] text-[#FF6A55]">
                   <AiOutlineArrowDown className="w-4 h-4 mr-1 fill-[#FF6A55]" />
                   37.8%
                </div>
@@ -52,9 +52,8 @@ export default function StatCards({ customers }) {
 
             <div
                onClick={() => setActiveCard("income")}
-               className={`cursor-pointer w-full sm:w-1/2 flex items-center justify-between rounded-xl text-[#1A1D1F] py-5 px-4 transition duration-300 ease-in-out select-none
-               ${activeCard === "income" ? "bg-[#FCFCFC]" : "bg-[#F4F4F4]"}
-            `}
+               className={`relative cursor-pointer w-full sm:w-1/2 flex items-center justify-between rounded-xl text-[#1A1D1F] py-5 px-4 transition duration-300 ease-in-out select-none
+                  ${activeCard === "income" ? "bg-[#FCFCFC]" : "bg-[#F4F4F4]"}`}
             >
                <div className="hidden sm:flex items-center justify-center shrink-0 w-10 h-10 mr-4 rounded-full bg-[#CABDFF]">
                   <BsGraphUp className="w-6 h-6 fill-[#1A1D1F]" />
@@ -67,8 +66,7 @@ export default function StatCards({ customers }) {
                   </div>
                   <div className="text-5xl font-semibold leading-[1]">256k</div>
                </div>
-
-               <div className="flex items-center text-xs font-bold bg-[#EAFAE5] h-6 px-1 rounded-lg text-[#83BF6E] ml-2">
+               <div className="absolute top-3 right-3 left-auto h-6 px-2 py-0 rounded-lg flex items-center text-xs font-bold bg-[#EAFAE5] text-[#83BF6E]">
                   <AiOutlineArrowUp className="w-4 h-4 mr-1 fill-[#83BF6E]" />
                   37.8%
                </div>

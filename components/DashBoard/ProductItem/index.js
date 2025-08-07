@@ -1,6 +1,5 @@
 export default function ProductItem({ product }) {
   return (
-
     <div className="flex items-center justify-between p-3">
       <div className="w-16 h-16 mr-3 overflow-hidden rounded-lg">
         <img src={product.image} className="w-full h-full object-cover " alt={product.name} />

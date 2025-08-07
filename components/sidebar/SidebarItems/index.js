@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { FaHouse } from "react-icons/fa6";
 import { RiVipDiamondLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { AiTwotoneShop } from "react-icons/ai";
 import SidebarMenuItem from "./SidebarMenuItem";
 import SidebarSubMenuItem from "./SidebarSubMenuItem";
+import { TbHomeFilled } from "react-icons/tb";
 
-export default function SidebarItems({ isOpen }) {
+export default function SidebarItems({ isOpen, toggleSidebar }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [openSubmenu, setOpenSubmenu] = useState({});
   const [activeSubIndex, setActiveSubIndex] = useState({});
@@ -16,7 +16,7 @@ export default function SidebarItems({ isOpen }) {
   };
 
   const menuItems = [
-    { icon: <FaHouse />, label: "Home" },
+    { icon: <TbHomeFilled />, label: "Home" },
     {
       icon: <RiVipDiamondLine />,
       label: "Products",
@@ -43,7 +43,7 @@ export default function SidebarItems({ isOpen }) {
   ];
 
   return (
-    <div className="space-y-2 w-full /*flex justify-center items-center flex-col*/ ">
+    <div className="space-y-2 w-full mb-0 /*flex justify-center items-center flex-col*/ ">
       {menuItems.map((item, index) => {
         const isSubmenuOpen = openSubmenu[index] || false;
         const isMainItemActive = index === activeIndex && activeSubIndex[index] === undefined;
@@ -59,7 +59,17 @@ export default function SidebarItems({ isOpen }) {
               onClick={() => {
                 setActiveIndex(index);
                 setActiveSubIndex({});
-                if (item.submenu) toggleSubmenu(index);
+
+                if (item.submenu) {
+                  if (!isOpen) {
+                    toggleSidebar(); 
+                    setTimeout(() => {
+                      setOpenSubmenu((prev) => ({ ...prev, [index]: true }));
+                    }, 300); 
+                  } else {
+                    toggleSubmenu(index); 
+                  }
+                }
               }}
             />
 

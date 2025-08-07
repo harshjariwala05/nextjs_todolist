@@ -11,23 +11,20 @@ export default function Theme({ isOpen }) {
   if (!isOpen) {
     return (
       <div
-        className="flex p-[4px_2px] rounded-[20px] bg-[#F4F4F4] transition-colors duration-200 cursor-pointer hover:bg-[#e2e2e2]"
+        className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-md cursor-pointer transition hover:scale-105"
         onClick={toggleTheme}
       >
-        <div className="p-2 rounded-full">
-          {isLight ? (
-            <BsSunFill className="w-6 h-6 text-gray-600" />
-          ) : (
-            <BsMoon className="w-6 h-6 text-gray-600" />
-          )}
-        </div>
+        {isLight ? (
+          <BsSunFill className="w-6 h-6 text-black" />
+        ) : (
+          <BsMoon className="w-6 h-6 text-black" />
+        )}
       </div>
     );
   }
-
   return (
     <div className="flex items-center mt-4 overflow-x-hidden">
-      <div className="flex relative py-1 px-0.5 rounded-[20px] bg-[#F1F1F1] transition w-full ">
+      <div className="flex relative py-1 px-0.5 rounded-[20px] bg-[#F1F1F1] transition w-full">
         <button
           onClick={() => setIsLight(true)}
           className={`flex items-center justify-center cursor-pointer h-8 m-0.5 rounded-2xl text-[15px] px-4 py-1 w-full transition ${isLight ? "bg-white shadow text-black" : "text-gray-500"

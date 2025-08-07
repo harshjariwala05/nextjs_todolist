@@ -6,14 +6,16 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
-  const [isOpen, setOpen] = useState(true); // original name
+  const [isOpen, setOpen] = useState(true);
+  const [isManuallyOpened, setManuallyOpened] = useState(false);
 
-  // 👉 Detect screen size changes
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 768); // mobile under 768px
-      setOpen(width >= 768 ? width >= 1260 : false); // open if >= 1260, else collapsed/closed
+      const mobile = width < 768;
+      setIsMobile(mobile);
+      setOpen(mobile ? false : width >= 1260);
+      setManuallyOpened(false);
     };
 
     handleResize();
@@ -21,28 +23,48 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 👉 Toggle for mobile only
   const toggleSidebar = () => {
-    if (isMobile) {
-      setOpen(prev => !prev);
-    }
+    setOpen(prev => {
+      const newState = !prev;
+      if (!isMobile && newState) {
+        setManuallyOpened(true);  
+      } else {
+        setManuallyOpened(false);
+      }
+      return newState;
+    });
   };
 
+  const marginClass = !isMobile && isOpen && !isManuallyOpened
+    ? 'ml-[340px]'
+    : !isMobile
+      ? 'ml-[96px]'
+      : '';
+
+  const fadeClass = !isMobile && isManuallyOpened
+    ? 'opacity-50 transition-opacity duration-300'
+    : 'opacity-100 transition-opacity duration-300';
+
+
   return (
-    <div className="flex">
+    <div className="flex  relative w-full">
+      {!isMobile && isManuallyOpened && (
+        <div
+          className="fixed inset-0 bg-opacity-30 z-30"
+          onClick={toggleSidebar}
+        />
+      )}
+
       <Sidebar
         isMobile={isMobile}
         isOpen={isOpen}
         toggleSidebar={toggleSidebar}
+        isManuallyOpened={isManuallyOpened}
       />
 
-      <div
-        className={`flex flex-col min-h-screen transition-all duration-300 ${
-          !isMobile && isOpen ? 'ml-[340px]' : !isMobile ? 'ml-[96px]' : ''
-        }`}
-      >
+      <div className={`flex flex-col min-h-screen w-full ${marginClass} ${fadeClass}`}>
         <Header toggleSidebarCollapse={toggleSidebar} isOpen={isOpen} />
-        <main className="">
+        <main>
           <Dashboard />
         </main>
       </div>

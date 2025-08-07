@@ -1,12 +1,9 @@
-import CustomerList from './CustomerList';
 import PopularProducts from './PopularProducts';
 import Chart from './Chart';
 import ProTips from './ProTips';
 import Comments from './Comments';
 import Ads from './Ads';
 import RefundRequest from './RefundRequest';
-import LineChart from './BasicLineChart';
-import StatsToggleCards from './StatCard';
 import StatCards from './StatCard';
 
 export default function Dashboard() {
@@ -46,7 +43,6 @@ export default function Dashboard() {
                 <div className="mb-6 text-[40px] leading-[1.2] font-semibold md:mb-4 ">Dashboard</div>
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-2 ">
                     <div className="col-span-12 md:col-span-8 space-y-6">
-                        {/* <CustomerList customers={customers} /> */}
                         <StatCards customers={customers} />
                         <Chart />
                         <ProTips />
