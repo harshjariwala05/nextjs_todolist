@@ -18,24 +18,28 @@ export default function Dashboard() {
             name: 'Crypter - NFT UI kit',
             image: 'https://ui8-core.herokuapp.com/img/content/product-pic-1@2x.jpg',
             earning: '2453.80',
+            status: 'Active',
         },
         {
             name: 'Bento Matte 3D illustration 1.0',
             image: 'https://ui8-core.herokuapp.com/img/content/product-pic-2@2x.jpg',
             earning: '105.60',
+            status: 'Deactive',
         },
         {
             name: 'Excellent material 3D chair',
             image: 'https://ui8-core.herokuapp.com/img/content/product-pic-3@2x.jpg',
             earning: '648.60',
+            status: 'Active',
         },
         {
-            name: 'Crypter - NFT UI kit',
-            image: 'https://ui8-core.herokuapp.com/img/content/product-pic-1@2x.jpg',
-            earning: '2453.80',
+            name: 'Fleet - travel shopping kit',
+            image: 'https://ui8-core.herokuapp.com/img/content/product-pic-4@2x.jpg',
+            earning: '648.60',
+            status: 'Active',
         },
-
     ];
+
 
     return (
         <div className="min-h-screen bg-[#F4F4F4] overflow-x-hidden px-4 py-6 md:px-6 md:py-8">

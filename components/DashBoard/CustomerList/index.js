@@ -17,24 +17,25 @@ export default function CustomerList({ customers }) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-10 gap-y-8">
+            {/* Responsive grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
                 {customers.map((val, i) => (
                     <div
                         key={i}
-                        className="group flex flex-col items-center justify-center text-center cursor-pointer p-3 rounded-lg     transition-colors duration-300"
+                        className="group flex flex-col items-center justify-center text-center cursor-pointer p-3 rounded-lg transition-colors duration-300"
                     >
                         <img
                             src={val.image}
                             alt={val.name}
                             className="w-16 h-16 rounded-full mb-2 shadow-sm group-hover:shadow-lg transition-shadow duration-300"
                         />
-                        <span className="text-[13px] font-medium leading-[1.23] text-[#1A1D1F] group-hover:text-[#5985FF]">
+                        <span className="text-[13px] font-medium leading-[1.23] text-[#1A1D1F] group-hover:text-[#5985FF] truncate max-w-full">
                             {val.name}
                         </span>
                     </div>
                 ))}
 
-
+                {/* View All Button */}
                 <div className="flex flex-col items-center justify-center text-center cursor-pointer text-gray-500 hover:text-[#155DFC] transition-colors duration-300 ease-in-out">
                     <div className="w-14 h-14 flex items-center justify-center rounded-full bg-[#EFEFEF] mb-2 text-lg transition-all duration-300 ease-in-out hover:outline-2 hover:outline-[#155DFC] hover:bg-[#EFF6FF] hover:text-[#155DFC] shadow-sm hover:shadow-md">
                         <FaArrowRightLong />
@@ -43,7 +44,6 @@ export default function CustomerList({ customers }) {
                         View all
                     </span>
                 </div>
-
             </div>
         </div>
     );

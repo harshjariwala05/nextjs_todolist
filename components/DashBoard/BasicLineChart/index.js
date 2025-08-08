@@ -2,7 +2,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 
 export default function BasicLineChart() {
   return (
-    <div className="flex items-start mb-4 w-full max-w-[670px] h-auto relative ml-[-30px] overflow-y-hidden">
+    <div className="flex items-start mb-4 w-full max-w-auto h-auto relative ml-[-30px] overflow-y-hidden">
       <LineChart
         xAxis={[{ data: ['Apr', 'May', 'Jun', 'July', 'Aug', 'Sep'], scaleType: 'point', axisLine: { visible: true }, },]}
         yAxis={[{ min: 300, max: 1800, axisLine: { visible: true }, },]}

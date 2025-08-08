@@ -22,10 +22,10 @@ export default function SidebarItems({ isOpen, toggleSidebar }) {
       label: "Products",
       submenu: [
         { label: "Dashboard" },
-        { label: "Drafts", badge: 2, badgeColor: "bg-orange-300" },
+        { label: "Drafts", badge: 2, badgeColor: "bg-[#FFBC99]" },
         { label: "Released" },
         { label: "Comments" },
-        { label: "Scheduled", badge: 8, badgeColor: "bg-green-300" },
+        { label: "Scheduled", badge: 8, badgeColor: "bg-[#B5E4CA]" },
       ],
     },
     {
@@ -43,10 +43,12 @@ export default function SidebarItems({ isOpen, toggleSidebar }) {
   ];
 
   return (
-    <div className="space-y-2 w-full mb-0 /*flex justify-center items-center flex-col*/ ">
+    <div className="space-y-2 w-full mb-0">
       {menuItems.map((item, index) => {
         const isSubmenuOpen = openSubmenu[index] || false;
-        const isMainItemActive = index === activeIndex && activeSubIndex[index] === undefined;
+        const isMainItemActive =
+          (activeIndex === index && activeSubIndex[index] === undefined) ||
+          (activeSubIndex[index] !== undefined);
 
         return (
           <div key={index}>
@@ -62,12 +64,12 @@ export default function SidebarItems({ isOpen, toggleSidebar }) {
 
                 if (item.submenu) {
                   if (!isOpen) {
-                    toggleSidebar(); 
+                    toggleSidebar();
                     setTimeout(() => {
                       setOpenSubmenu((prev) => ({ ...prev, [index]: true }));
-                    }, 300); 
+                    }, 300);
                   } else {
-                    toggleSubmenu(index); 
+                    toggleSubmenu(index);
                   }
                 }
               }}
@@ -85,6 +87,9 @@ export default function SidebarItems({ isOpen, toggleSidebar }) {
                       onClick={() => {
                         setActiveIndex(index);
                         setActiveSubIndex({ ...activeSubIndex, [index]: subIndex });
+                        if (isOpen) {
+                          toggleSidebar();
+                        }
                       }}
                     />
                   );

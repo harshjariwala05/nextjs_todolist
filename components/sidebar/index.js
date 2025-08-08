@@ -5,7 +5,12 @@ import Theme from './Theme';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 export default function Sidebar({ isMobile, isOpen, toggleSidebar, isManuallyOpened }) {
-  const sidebarWidth = isOpen ? 'w-[340px]' : 'w-[96px]';
+  const sidebarWidth = isMobile
+    ? 'w-full'
+    : isOpen
+      ? 'w-[340px]'
+      : 'w-[96px]';
+
   const translateClass = isMobile
     ? isOpen
       ? 'translate-x-0'
@@ -14,11 +19,14 @@ export default function Sidebar({ isMobile, isOpen, toggleSidebar, isManuallyOpe
 
   const showToggleIcon = !isOpen && !isMobile;
 
+  const isMobileOpen = isMobile && isOpen;
+  const isCollapsedOpen = !isMobile && !isOpen && isManuallyOpened;
+
   return (
     <>
-      {isMobile && isOpen && (
+      {isMobileOpen && (
         <div
-          className="fixed inset-0 bg-opacity-30 z-30"
+          className="fixed inset-0 bg-black bg-opacity-30 z-30"
           onClick={toggleSidebar}
         />
       )}
@@ -26,17 +34,19 @@ export default function Sidebar({ isMobile, isOpen, toggleSidebar, isManuallyOpe
       <div
         className={`fixed top-0 left-0 h-screen bg-white shadow-lg z-40 transition-transform duration-300 ease-in-out ${translateClass} ${sidebarWidth} flex flex-col`}
       >
-        <div className="relative flex items-center justify-start px-5 py-6 shrink-0">
+ 
+        <div className={`relative flex items-center justify-between px-5 py-6 shrink-0`}>
           <img
             src="https://ui8-core.herokuapp.com/img/logo-dark.png"
             alt="Logo"
-            className={`rounded-full transition-all duration-300 ${isOpen ? 'w-12 h-12' : 'w-10 h-10'}`}
+            className={`rounded-full transition-all duration-300 ${isOpen || isMobile ? 'w-12 h-12' : 'w-10 h-10'
+              }`}
           />
 
-          {isManuallyOpened && (
+          {(isMobileOpen || isCollapsedOpen || (isOpen && isManuallyOpened)) && (
             <button
               onClick={toggleSidebar}
-              className="absolute right-4 top-4 text-gray-600 hover:text-black"
+              className="text-gray-600 hover:text-black"
             >
               <FaTimes className="w-5 h-5" />
             </button>
@@ -47,10 +57,10 @@ export default function Sidebar({ isMobile, isOpen, toggleSidebar, isManuallyOpe
           <div>
             <SidebarItems
               isOpen={isOpen || isMobile}
-              toggleSidebar={toggleSidebar}
+              toggleSidebar={toggleSidebar} 
             />
-
           </div>
+
           {showToggleIcon && (
             <div className="flex justify-start mt-12 ml-2 py-2">
               <button

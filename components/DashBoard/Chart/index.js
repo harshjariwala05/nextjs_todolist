@@ -3,7 +3,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 
 export default function BasicBars() {
     return (
-        <div className=" h-100 bg-[#FFFFFF] rounded-xl p-6 w-full max-w-full overflow-x-auto shadow mb-2">
+        <div className=" h-100 bg-[#FFFFFF] rounded-xl p-6 w-full max-w-full max-h-[350px] overflow-y-hidden shadow mb-2">
 
             <div className="flex flex-wrap justify-between items-center mb-7 gap-x-4 gap-y-3">
                 <div className="flex items-center">
